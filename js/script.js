@@ -25,13 +25,29 @@ console.log(randomWordGenerator);
 var splitRandomWord = randomWordGenerator.split('');
 console.log(splitRandomWord);
 
+var letterButtons = document.getElementById(letterButtons > buttons )
+
+var elements = document.getElementsByClassName('class');
+
+for (var i = 0, len = elements.length; i < len; i++) {
+   var child = elements[i].querySelector('.class_of_desired_element');
+
+   //do stuff with child
+}
+
+
 
 function compareWordAndButton () {
-for (let word of splitRandomWord) {
-    if (letterButtons === word)
-        fakkin' make it work dammit. 
+for (let char of splitRandomWord) {
+    if (letterButtons === char)
+    {
+
+    }
+        
   } else (letterbox) gtfo 
 }
+
+document.getElementById(id).value
 
 /* 
 Skapa array med ord. (Wordlist)
