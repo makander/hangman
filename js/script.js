@@ -26,7 +26,12 @@ var splitRandomWord = randomWordGenerator.split('');
 console.log(splitRandomWord);
 
 
-
+function compareWordAndButton () {
+for (let word of splitRandomWord) {
+    if (letterButtons === word)
+        fakkin' make it work dammit. 
+  } else (letterbox) gtfo 
+}
 
 /* 
 Skapa array med ord. (Wordlist)
