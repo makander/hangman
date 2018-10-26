@@ -16,6 +16,13 @@ function init() {} // End init
 
 window.onload = init; // Se till att init aktiveras då sidan är inladdad
 
+var wordList = ['computer', 'lawnmower', 'flashlight', 'hairdryer', 'crockpot', 'blender'];
+
+
+
+
+
+
 // Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
 
 // Funktion som slumpar fram ett ord
