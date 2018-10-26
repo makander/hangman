@@ -16,12 +16,31 @@ function init() {} // End init
 
 window.onload = init; // Se till att init aktiveras då sidan är inladdad
 
-var wordList = ['computer', 'lawnmower', 'flashlight', 'hairdryer', 'crockpot', 'blender'];
+var wordList = ['radio', 'lawnmower', 'flashlight', 'hairdryer', 'crockpot', 'blender','knife'];
+console.log(wordList.length);
+
+var randomWordGenerator = wordList[Math.floor(Math.random()*wordList.length)];
+console.log(randomWordGenerator);
+
+var splitRandomWord = randomWordGenerator.split('');
+console.log(splitRandomWord);
 
 
 
 
+/* 
+Skapa array med ord. (Wordlist)
+Kör random på den arrayen och skriv ut ett ord. 
+Hur gör man det?
 
+wordlist array har 7 ord, välj en array index slumpmässigt och skriv ut det.
+
+
+Spara det ordet in i en variabel
+bryt ner ordet till chars
+jämför det ordet mot input ifrån användaren.
+
+*/ 
 
 // Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
 
