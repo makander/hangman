@@ -1,13 +1,13 @@
-// Globala variabler
+ // Globala variabler
 
 var wordList; // Lista med spelets alla ord
 var selectedWord; // Ett av orden valt av en slumpgenerator
-var letterBoxes; //Rutorna där bokstäverna ska stå
+//var letterBoxes; //Rutorna där bokstäverna ska stå
 var hangmanImg; //Bild som kommer vid fel svar
 var hangmanImgNr; // Vilken av bilderna som kommer upp beroende på hur många fel du gjort
 var msgElem; // Ger meddelande när spelet är över
 var startGameBtn; // Knappen du startar spelet med
-var letterButtons; // Knapparna för bokstäverna
+var letterButtons;
 var startTime; // Mäter tiden
 
 // Funktion som körs då hela webbsidan är inladdad, dvs då all HTML-kod är utförd
@@ -16,24 +16,43 @@ function init() {} // End init
 
 window.onload = init; // Se till att init aktiveras då sidan är inladdad
 
-var wordList = ['radio', 'lawnmower', 'flashlight', 'hairdryer', 'crockpot', 'blender','knife'];
-console.log(wordList.length);
+ var wordList = ['radio', 'lawnmower', 'flashlight', 'hairdryer', 'crockpot', 'blender','knife'];
 
-var randomWordGenerator = wordList[Math.floor(Math.random()*wordList.length)];
-console.log(randomWordGenerator);
 
-var splitRandomWord = randomWordGenerator.split('');
+ // Genererar ett slumpmässigt ord utifån Math.random funktionen och trycker ut list items. 
+var selectedWord = wordList[Math.floor(Math.random()*wordList.length)];
+
+
+const letterBoxes = document.getElementById('letterBoxes');
+var list = document.createElement('ul');
+
+for (let index = 0; index < selectedWord.length; index++){
+  var listItem = document.createElement('li');
+  listItem.innerHTML = "<li><input type='text'></li>";
+  list.appendChild(listItem);
+}
+document.getElementById('letterBoxes').appendChild(list);
+
+    
+
+
+// Bryter ner ordlistarn till chars
+var splitRandomWord = selectedWord.split('');
 console.log(splitRandomWord);
 
-var letterButtons = document.getElementById(letterButtons > buttons )
 
-var elements = document.getElementsByClassName('class');
 
-for (var i = 0, len = elements.length; i < len; i++) {
-   var child = elements[i].querySelector('.class_of_desired_element');
 
-   //do stuff with child
-}
+
+
+// var letterButtons = document.querySelectorAll('#letterButtons li button');
+
+
+
+/* for (let index = 0; index < letterButtons.length; index++) {
+  letterButtons[i].addEventListener("click", function() {
+    console.log(letterButtons.value);
+
 
 
 
@@ -49,7 +68,7 @@ for (let char of splitRandomWord) {
 
 document.getElementById(id).value
 
-/* 
+
 Skapa array med ord. (Wordlist)
 Kör random på den arrayen och skriv ut ett ord. 
 Hur gör man det?
@@ -73,4 +92,4 @@ jämför det ordet mot input ifrån användaren.
 
 // Funktionen ropas vid vinst eller förlust, gör olika saker beroende av det
 
-// Funktion som inaktiverar/aktiverar bokstavsknapparna beroende på vilken del av spelet du är på
+// Funktion som inaktiverar/aktiverar bokstavsknapparna beroende på vilken del av spelet du är på */
