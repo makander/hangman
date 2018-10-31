@@ -53,24 +53,16 @@ letterButtons.forEach(function(button) {
         console.log('Detta är ordet i funktionen med knapptryck: ' + splitRandomWord)
 
         for (let index = 0; index < splitRandomWord.length; index++) {
-            if (buttonVal === splitRandomWord[index]) {
-                letterBox.setAttribute('value',buttonVal);
+            if (buttonVal === splitRandomWord[index]) {          
+              letterBox.setAttribute('value', buttonVal);
+              
             } else { 
                 console.log('error')
             }
         }
+        button.disabled = true;
     });
 });
-
-
-/* const list = document.querySelector('#book-list ul');
-
-list.addEventListener('click',function(e){
-    if(e.target.className == 'delete') {
-        const li = e.target.parentElement;
-        list.removeChild(li);
-    }
-}) */
 
 
 // Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
