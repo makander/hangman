@@ -12,7 +12,7 @@ var letterButtons = document.querySelectorAll('#letterButtons button');
 var startTime; // Mäter tiden
 var numberOfGuesses = 0;
 var successfulGuesses = [];
-var restartButton = document.querySelector('restartBtn')
+var restartButton = document.querySelector('#restartBtn')
 
 // Funktion som körs då hela webbsidan är inladdad, dvs då all HTML-kod är utförd
 // Initiering av globala variabler samt koppling av funktioner till knapparna.
@@ -20,8 +20,14 @@ var restartButton = document.querySelector('restartBtn')
 function init() {
     startGameBtn.addEventListener('click', createBoxes);
     restartBtn.style.visibility = 'hidden';
+    restartBtn.addEventListener('click',) { wordGenerator,createBoxes };
 };
+
 window.onload = init; 
+
+function wordGenerator () {
+    return wordList[Math.floor(Math.random()*wordList.length)];
+}
 
 // Add list letterBoxes and create box ids 
 function createBoxes() {
@@ -33,8 +39,8 @@ for (let index = 0; index < splitRandomWord.length; index++) {
   letterBox.setAttribute('id', + [index]);
   li.appendChild(letterBox);
   letterBoxes.appendChild(li);
+  startGameBtn.style.visibility = 'hidden';
   }};
-
 
 letterButtons.forEach(function(button) {
 	button.addEventListener('click',function(e){
@@ -60,7 +66,7 @@ letterButtons.forEach(function(button) {
                     numberOfGuesses++;
                     hangmanImg.src=`images/h${numberOfGuesses}.png`;
                     wrongGuess = false;
-                    if (numberOfGuesses > 7) {
+                    if (numberOfGuesses > 6) {
                         var msgBox = document.createElement('h1');
                         var msgBoxContent = document.createTextNode('YOU LOOSE!')
                         msgBox.appendChild(msgBoxContent)
