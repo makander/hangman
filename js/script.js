@@ -1,33 +1,30 @@
  // Globala variabler
 
-var wordList; // Lista med spelets alla ord
+var wordList = ['RADIO', 'LAWNMOWER', 'FLASHLIGHT', 'HARIDRYER', 'CROCKPOT', 'BLENDER','KNIFE', 'WOKINGPAN', 'PLATE, BOWL']; 
 var selectedWord = wordList[Math.floor(Math.random()*wordList.length)];
+var splitRandomWord = selectedWord.split('');
 var letterBoxes = document.querySelector('#letterBoxes ul');
-var hangmanImg = document.getElementById('hangman');
-var hangmanImgNr; // Vilken av bilderna som kommer upp beroende på hur många fel du gjort
-var msgElem; // Ger meddelande när spelet är över
-var startGameBtn = document.getElementById('startGameBtn'); 
+var hangmanImg = document.querySelector('img');
+var hangmanImgNr = "images/h0.png" 
+var msgElem = document.querySelector('#message');
+var startGameBtn = document.querySelector('#startGameBtn'); 
 var letterButtons = document.querySelectorAll('#letterButtons button');
 var startTime; // Mäter tiden
+var numberOfGuesses = 0;
+var successfulGuesses = [];
+var restartButton = document.querySelector('restartBtn')
 
 // Funktion som körs då hela webbsidan är inladdad, dvs då all HTML-kod är utförd
 // Initiering av globala variabler samt koppling av funktioner till knapparna.
-function init() {} // End init
 
-window.onload = init; // Se till att init aktiveras då sidan är inladdad
+function init() {
+    startGameBtn.addEventListener('click', createBoxes);
+    restartBtn.style.visibility = 'hidden';
+};
+window.onload = init; 
 
-startGameBtn.addEventListener('click', function(e){
-    console.log('LET THE GAMES BEGIN!')
-});
-wordList = ['RADIO', 'LAWNMOWER', 'FLASHLIGHT', 'HARIDRYER', 'CROCKPOT', 'BLENDER','KNIFE'];
-
-// Genererar ett slumpmässigt ord utifån Math.random funktionen och trycker ut list items. 
-
-
-// Bryter ner ordlistarn till chars
-var splitRandomWord = selectedWord.split('');
-
-// Add list letterBoxes and create box ids
+// Add list letterBoxes and create box ids 
+function createBoxes() {
 for (let index = 0; index < splitRandomWord.length; index++) {
   let li = document.createElement('li');
   let letterBox = document.createElement('input');
@@ -36,38 +33,46 @@ for (let index = 0; index < splitRandomWord.length; index++) {
   letterBox.setAttribute('id', + [index]);
   li.appendChild(letterBox);
   letterBoxes.appendChild(li);
-  }
+  }};
+
 
 letterButtons.forEach(function(button) {
 	button.addEventListener('click',function(e){
-        let guess = true;
+        let wrongGuess = true; 
         let buttonVal = (event.target.value);
-        console.log('Detta är ordet i funktionen med knapptryck: ' + splitRandomWord)
         for (let index = 0; index < splitRandomWord.length; index++) {
-            if (buttonVal === splitRandomWord[index]) {         
+            if (buttonVal === splitRandomWord[index]) 
+            {  
                 let letterBox = document.getElementById(index);
-                console.log(letterBox);
                 letterBox.setAttribute('value', buttonVal);
-            } else { 
-                var guesses = 7;  {
-                    console.log("h"+[index]+".png")
-                    
+                successfulGuesses.push(buttonVal)
+                if (successfulGuesses.length === splitRandomWord.length) {
+                    var msgBox = document.createElement('h1');
+                    var msgBoxContent = document.createTextNode('YOU WIN!')
+                    msgBox.appendChild(msgBoxContent)
+                    msgElem.appendChild(msgBox);
+                    restartBtn.style.visibility = 'visible';
                 }
-            }
+                wrongGuess = false; 
+            }  
+        }
+            if (wrongGuess) {
+                    numberOfGuesses++;
+                    hangmanImg.src=`images/h${numberOfGuesses}.png`;
+                    wrongGuess = false;
+                    if (numberOfGuesses > 7) {
+                        var msgBox = document.createElement('h1');
+                        var msgBoxContent = document.createTextNode('YOU LOOSE!')
+                        msgBox.appendChild(msgBoxContent)
+                        msgElem.appendChild(msgBox);
+                        restartBtn.style.visibility = 'visible';
+                        }
         }
         button.disabled = true;
     });
 });
 
-
 // Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
-
-// Funktion som slumpar fram ett ord
- 
 // Funktionen som tar fram bokstävernas rutor, antal beror på vilket ord
-
 // Funktion som körs när du trycker på bokstäverna och gissar bokstav
-
 // Funktionen ropas vid vinst eller förlust, gör olika saker beroende av det
-
-// Funktion som inaktiverar/aktiverar bokstavsknapparna beroende på vilken del av spelet du är på */
