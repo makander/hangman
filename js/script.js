@@ -1,9 +1,9 @@
  // Globala variabler
 
 var wordList; // Lista med spelets alla ord
-var selectedWord; // Ett av orden valt av en slumpgenerator
-const letterBoxes = document.querySelector('#letterBoxes ul');
-var hangmanImg; //Bild som kommer vid fel svar
+var selectedWord = wordList[Math.floor(Math.random()*wordList.length)];
+var letterBoxes = document.querySelector('#letterBoxes ul');
+var hangmanImg = document.getElementById('hangman');
 var hangmanImgNr; // Vilken av bilderna som kommer upp beroende på hur många fel du gjort
 var msgElem; // Ger meddelande när spelet är över
 var startGameBtn = document.getElementById('startGameBtn'); 
@@ -16,48 +16,43 @@ function init() {} // End init
 
 window.onload = init; // Se till att init aktiveras då sidan är inladdad
 
-
 startGameBtn.addEventListener('click', function(e){
     console.log('LET THE GAMES BEGIN!')
 });
-
-
-var wordList = ['RADIO', 'LAWNMOWER', 'FLASHLIGHT', 'HARIDRYER', 'CROCKPOT', 'BLENDER','KNIFE'];
+wordList = ['RADIO', 'LAWNMOWER', 'FLASHLIGHT', 'HARIDRYER', 'CROCKPOT', 'BLENDER','KNIFE'];
 
 // Genererar ett slumpmässigt ord utifån Math.random funktionen och trycker ut list items. 
-var selectedWord = wordList[Math.floor(Math.random()*wordList.length)];
-console.log(selectedWord)
 
 
 // Bryter ner ordlistarn till chars
 var splitRandomWord = selectedWord.split('');
 
-// Add list letterBoxes 
-
-console.log(letterBoxes);
-
+// Add list letterBoxes and create box ids
 for (let index = 0; index < splitRandomWord.length; index++) {
-  var li = document.createElement('li');
-  var letterBox = document.createElement('input');
+  let li = document.createElement('li');
+  let letterBox = document.createElement('input');
   letterBox.setAttribute('type','text');
   letterBox.setAttribute('value', '-');
-
+  letterBox.setAttribute('id', + [index]);
   li.appendChild(letterBox);
   letterBoxes.appendChild(li);
   }
 
 letterButtons.forEach(function(button) {
 	button.addEventListener('click',function(e){
-
+        let guess = true;
         let buttonVal = (event.target.value);
         console.log('Detta är ordet i funktionen med knapptryck: ' + splitRandomWord)
-
         for (let index = 0; index < splitRandomWord.length; index++) {
-            if (buttonVal === splitRandomWord[index]) {          
-              letterBox.setAttribute('value', buttonVal);
-              
+            if (buttonVal === splitRandomWord[index]) {         
+                let letterBox = document.getElementById(index);
+                console.log(letterBox);
+                letterBox.setAttribute('value', buttonVal);
             } else { 
-                console.log('error')
+                var guesses = 7;  {
+                    console.log("h"+[index]+".png")
+                    
+                }
             }
         }
         button.disabled = true;
