@@ -92,10 +92,6 @@ footer {
   font-size: 1.5em;
 }
 
-.image-container {
-  display: flex;
-}
-
 #gameBoard {
   padding: 10px 0;
 }
@@ -134,13 +130,31 @@ footer {
 #message {
   padding-top: 20px;
   font-size: 1.5em;
+  text-align: center;
 }
 
+#message h1 {
+  color: tomato;
+  font-size: 50px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 25px;
+}
 
 #hangman {
   max-width: 100%;
   height: auto;
 }
+
+
 
 .btn {
   -moz-user-select: text;

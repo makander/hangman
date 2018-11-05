@@ -113,7 +113,6 @@ function removeMsg() {
     msgElem.removeChild(msgElem.lastChild);
 };
 
-
 // Add list letterBoxes and create box ids.
 function createBoxes() {
 for (let index = 0; index < selectedWord.length; index++) {
@@ -126,21 +125,20 @@ for (let index = 0; index < selectedWord.length; index++) {
   letterBoxes.appendChild(li);
   }};
 
-  /*
-  
-  Button behavoir
+/*
+Button behavoir
 Buttons get disabled after click. 
 
 Logs keyvaule and compares it to index of the selected word.
-If it's correct it gets pushed into the successfullGuess array.
+If value matches it gets pushed into the successfullGuess array.
 When the successful guess array is full, the win message appears.
 
-If the keyvalue doesn't match the selected word index, the wrongguess bool is set to true.
+If the keyvalue doesn't match the selected word index, the wrongGuess bool is set to true.
 The numberOfGuesses gets incremented. 
 The hangmanImgsrc changes and increments.
 Finally the loose message appears if there are too many wrong guesses. 
+*/
 
-  */
   letterButtons.forEach(function (button) {
 	button.addEventListener('click', function (e) {
         let wrongGuess = true;
