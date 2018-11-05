@@ -1,6 +1,6 @@
  // Globala variabler
 
-var wordList = ['RADIO', 'LAWNMOWER', 'FLASHLIGHT', 'HARIDRYER', 'CROCKPOT', 'BLENDER','KNIFE', 'WOKINGPAN', 'PLATE, BOWL']; 
+var wordList = ['RADIO', 'LAWNMOWER', 'FLASHLIGHT', 'HARIDRYER', 'CROCKPOT', 'BLENDER','KNIFE', 'WOKINGPAN', 'PLATE', 'BOWL']; 
 var selectedWord = wordList[Math.floor(Math.random()*wordList.length)];
 var splitRandomWord = selectedWord.split('');
 var letterBoxes = document.querySelector('#letterBoxes ul');
@@ -18,14 +18,19 @@ var gameBoard = document.querySelector('#gameBoard')
 // Funktion som körs då hela webbsidan är inladdad, dvs då all HTML-kod är utförd
 // Initiering av globala variabler samt koppling av funktioner till knapparna.
 
+window.onload = init; 
+
 function init() {
+
+    hideRestartBtn ();
+    gameBoardHidden();
     
     startGameBtn.addEventListener('click', function() {
+        wordGenerator();
         createBoxes();
         gameBoardVisible();
-        startGameBtnToggle();
+        hideStartBtn ();
     });
-    restartBtn.style.visibility = 'hidden';
     
 };
 
@@ -33,15 +38,20 @@ function gameBoardVisible () {
     gameBoard.style.visibility = 'visible';
 }
 
-//function restartBtn
+function gameBoardHidden () {
+    gameBoard.style.visibility = 'hidden';
+}
 
+function hideStartBtn () {
+    startGameBtn.style.visibility = 'hidden';
+}
 
-function startGameBtnToggle () {
-        if ( startGameBtn.style.visibility == 'hidden' ) {
-            startGameBtn.style.visibility = 'visible'; 
-        } else  {
-            startGameBtn.style.visibility == 'hidden';
-        }  
+function showStartBtn () {
+    startGameBtn.style.visibility = 'visible'; 
+}
+
+function hideRestartBtn () {
+    restartButton.style.visibility = 'hidden';
 }
 
 function restartBtnToggle () {
@@ -52,27 +62,18 @@ function restartBtnToggle () {
     }  
 }
 
-window.onload = init; 
-
-/* function startGame () {
-    return gameBoardVisible();
-    return createBoxes();
-}
- */
-
 function resetImageandGuess () {
     numberOfGuesses = 0;
     hangmanImg.src=`images/h${numberOfGuesses}.png`;
 }
-
 
 restartBtn.addEventListener('click', function() {
     removeLetterBoxes(); 
     enableButton();
     removeMsg();
     resetImageandGuess();
-    startGameBtnToggle();
-    restartBtnToggle();
+    showStartBtn();
+    hideRestartBtn();
 });
 
 function wordGenerator () {
@@ -117,7 +118,7 @@ function disableButton () {
 
 // Add list letterBoxes and create box ids 
 function createBoxes() {
-for (let index = 0; index < splitRandomWord.length; index++) {
+for (let index = 0; index < selectedWord.length; index++) {
   let li = document.createElement('li');
   let letterBox = document.createElement('input');
   letterBox.setAttribute('type','text');
@@ -125,9 +126,7 @@ for (let index = 0; index < splitRandomWord.length; index++) {
   letterBox.setAttribute('id', + [index]);
   li.appendChild(letterBox);
   letterBoxes.appendChild(li);
-  //startGameBtn.style.visibility = 'hidden';
   }};
-
 
 letterButtons.forEach(function(button) {
 	button.addEventListener('click',function(e){
