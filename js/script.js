@@ -1,68 +1,61 @@
- // Globala variabler
-
-var wordList = ['RADIO', 'LAWNMOWER', 'FLASHLIGHT', 'HARIDRYER', 'CROCKPOT', 'BLENDER','KNIFE', 'WOKINGPAN', 'PLATE', 'BOWL']; 
-var selectedWord = wordList[Math.floor(Math.random()*wordList.length)];
-var splitRandomWord = selectedWord.split('');
+// Globala variabler
+var wordList = ['RADIO', 'LAWNMOWER', 'FLASHLIGHT', 'HARIDRYER', 'CROCKPOT', 'BLENDER', 'KNIFE', 'WOKINGPAN', 'PLATE', 'BOWL'];
+var selectedWord = '';
 var letterBoxes = document.querySelector('#letterBoxes ul');
 var hangmanImg = document.querySelector('img');
-var hangmanImgNr = "images/h0.png" 
+var hangmanImgNr = "images/h0.png";
 var msgElem = document.querySelector('#message');
-var startGameBtn = document.querySelector('#startGameBtn'); 
+var startGameBtn = document.querySelector('#startGameBtn');
 var letterButtons = document.querySelectorAll('#letterButtons button');
 var startTime; // Mäter tiden
 var numberOfGuesses = 0;
 var successfulGuesses = [];
-var restartButton = document.querySelector('#restartBtn')
-var gameBoard = document.querySelector('#gameBoard')
+var restartButton = document.querySelector('#restartBtn');
+var gameBoard = document.querySelector('#gameBoard');
 
 // Funktion som körs då hela webbsidan är inladdad, dvs då all HTML-kod är utförd
 // Initiering av globala variabler samt koppling av funktioner till knapparna.
 
-window.onload = init; 
+window.onload = init;
 
 function init() {
 
-    hideRestartBtn ();
+    hideRestartBtn();
     gameBoardHidden();
-    
-    startGameBtn.addEventListener('click', function() {
-        wordGenerator();
+    startGameBtn.addEventListener('click', function () {
+        selectedWord = wordGenerator();
         createBoxes();
         gameBoardVisible();
-        hideStartBtn ();
+        hideStartBtn();
+        successfulGuesses = [];
     });
-    
-};
+}
 
-function gameBoardVisible () {
+function gameBoardVisible() {
     gameBoard.style.visibility = 'visible';
 }
 
-function gameBoardHidden () {
+function gameBoardHidden() {
     gameBoard.style.visibility = 'hidden';
 }
 
-function hideStartBtn () {
+function hideStartBtn() {
     startGameBtn.style.visibility = 'hidden';
-}
 
-function showStartBtn () {
+
+function showStartBtn() {
     startGameBtn.style.visibility = 'visible'; 
 }
 
-function hideRestartBtn () {
+function hideRestartBtn() {
     restartButton.style.visibility = 'hidden';
 }
 
-function restartBtnToggle () {
-    if ( restartButton.style.visibility == 'hidden' ) {
-        restartButton.style.visibility = 'visible'; 
-    } else  {
-        restartButton.style.visibility = 'hidden';
-    }  
+function showRestartBtn() {
+    restartButton.style.visibility = 'visible';
 }
 
-function resetImageandGuess () {
+function resetImageandGuess() {
     numberOfGuesses = 0;
     hangmanImg.src=`images/h${numberOfGuesses}.png`;
 }
@@ -74,9 +67,10 @@ restartBtn.addEventListener('click', function() {
     resetImageandGuess();
     showStartBtn();
     hideRestartBtn();
+    gameBoardHidden();
 });
 
-function wordGenerator () {
+function wordGenerator() {
     return wordList[Math.floor(Math.random()*wordList.length)];
 }
 
@@ -86,31 +80,31 @@ function removeLetterBoxes() {
     }
 }
 
-function looseMsg () {
+function looseMsg() {
     var msgBox = document.createElement('h1');
     var msgBoxContent = document.createTextNode('YOU LOOSE!');
     msgBox.appendChild(msgBoxContent)
     msgElem.appendChild(msgBox);
 }
 
-function winMsg () {
+function winMsg() {
     var msgBox = document.createElement('h1');
     var msgBoxContent = document.createTextNode('YOU WIN!')
     msgBox.appendChild(msgBoxContent)
     msgElem.appendChild(msgBox);
 }
 
-function removeMsg () {
+function removeMsg() {
     msgElem.removeChild(msgElem.lastChild);
 };
 
-function enableButton () {
+function enableButton() {
 letterButtons.forEach(button => {
     button.disabled = false;
 });
 }
 
-function disableButton () {
+function disableButton() {
     letterButtons.forEach(button => {
         button.disabled = true;
     });
@@ -129,21 +123,21 @@ for (let index = 0; index < selectedWord.length; index++) {
   }};
 
 letterButtons.forEach(function(button) {
-	button.addEventListener('click',function(e){
+	button.addEventListener('click', function(e){
         let wrongGuess = true; 
         let buttonVal = (event.target.value);
-        for (let index = 0; index < splitRandomWord.length; index++) {
-            if (buttonVal === splitRandomWord[index]) 
+        for (let index = 0; index < selectedWord.length; index++) {
+            if (buttonVal === selectedWord[index]) 
             {  
                 let letterBox = document.getElementById(index);
                 letterBox.setAttribute('value', buttonVal);
                 successfulGuesses.push(buttonVal)
-                if (successfulGuesses.length === splitRandomWord.length) {
+                if (successfulGuesses.length === selectedWord.length) {
                     var msgBox = document.createElement('h1');
                     var msgBoxContent = document.createTextNode('YOU WIN!');
                     msgBox.appendChild(msgBoxContent)
                     msgElem.appendChild(msgBox);
-                    restartBtnToggle();
+                    showRestartBtn();
                     disableButton();
                 }
                 wrongGuess = false; 
@@ -151,14 +145,14 @@ letterButtons.forEach(function(button) {
         }
             if (wrongGuess) {
                     numberOfGuesses++;
-                    hangmanImg.src=`images/h${numberOfGuesses}.png`;
+                    hangmanImg.src = `images/h${numberOfGuesses}.png`;
                     wrongGuess = false;
                     if (numberOfGuesses > 5) {
                         var msgBox = document.createElement('h1');
-                        var msgBoxContent = document.createTextNode('YOU LOOSE!')
-                        msgBox.appendChild(msgBoxContent)
+                        var msgBoxContent = document.createTextNode('YOU LOOSE!');
+                        msgBox.appendChild(msgBoxContent);
                         msgElem.appendChild(msgBox);
-                        restartBtnToggle();
+                        showRestartBtn();
                         disableButton();
                         }
         }
