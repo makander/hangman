@@ -1,4 +1,4 @@
-// Globala variabler
+// Global vars
 var wordList = ['RADIO', 'LAWNMOWER', 'FLASHLIGHT', 'HARIDRYER', 'CROCKPOT', 'BLENDER', 'KNIFE', 'WOKINGPAN', 'PLATE', 'BOWL'];
 var selectedWord = '';
 var letterBoxes = document.querySelector('#letterBoxes ul');
@@ -7,7 +7,6 @@ var hangmanImgNr = "images/h0.png";
 var msgElem = document.querySelector('#message');
 var startGameBtn = document.querySelector('#startGameBtn');
 var letterButtons = document.querySelectorAll('#letterButtons button');
-var startTime; // Mäter tiden
 var numberOfGuesses = 0;
 var successfulGuesses = [];
 var restartButton = document.querySelector('#restartBtn');
@@ -41,10 +40,10 @@ function gameBoardHidden() {
 
 function hideStartBtn() {
     startGameBtn.style.visibility = 'hidden';
-
+}
 
 function showStartBtn() {
-    startGameBtn.style.visibility = 'visible'; 
+    startGameBtn.style.visibility = 'visible';
 }
 
 function hideRestartBtn() {
@@ -55,13 +54,29 @@ function showRestartBtn() {
     restartButton.style.visibility = 'visible';
 }
 
+// Loop over buttons to enable them 
+function enableButton() {
+    letterButtons.forEach(button => {
+        button.disabled = false;
+    })
+};
+
+// Loop over buttons to disable them
+function disableButton() {
+    letterButtons.forEach(button => {
+        button.disabled = true;
+    });
+}
+
+
 function resetImageandGuess() {
     numberOfGuesses = 0;
     hangmanImg.src=`images/h${numberOfGuesses}.png`;
 }
 
+// Restart button resets the game, remove letterBoxes, enables all buttons, removes messages
 restartBtn.addEventListener('click', function() {
-    removeLetterBoxes(); 
+    removeLetterBoxes();
     enableButton();
     removeMsg();
     resetImageandGuess();
@@ -83,14 +98,14 @@ function removeLetterBoxes() {
 function looseMsg() {
     var msgBox = document.createElement('h1');
     var msgBoxContent = document.createTextNode('YOU LOOSE!');
-    msgBox.appendChild(msgBoxContent)
+    msgBox.appendChild(msgBoxContent);
     msgElem.appendChild(msgBox);
 }
 
 function winMsg() {
     var msgBox = document.createElement('h1');
-    var msgBoxContent = document.createTextNode('YOU WIN!')
-    msgBox.appendChild(msgBoxContent)
+    var msgBoxContent = document.createTextNode('YOU WIN!');
+    msgBox.appendChild(msgBoxContent);
     msgElem.appendChild(msgBox);
 }
 
@@ -98,19 +113,8 @@ function removeMsg() {
     msgElem.removeChild(msgElem.lastChild);
 };
 
-function enableButton() {
-letterButtons.forEach(button => {
-    button.disabled = false;
-});
-}
 
-function disableButton() {
-    letterButtons.forEach(button => {
-        button.disabled = true;
-    });
-}
-
-// Add list letterBoxes and create box ids 
+// Add list letterBoxes and create box ids.
 function createBoxes() {
 for (let index = 0; index < selectedWord.length; index++) {
   let li = document.createElement('li');
@@ -122,25 +126,40 @@ for (let index = 0; index < selectedWord.length; index++) {
   letterBoxes.appendChild(li);
   }};
 
-letterButtons.forEach(function(button) {
-	button.addEventListener('click', function(e){
-        let wrongGuess = true; 
+  /*
+  
+  Button behavoir
+Buttons get disabled after click. 
+
+Logs keyvaule and compares it to index of the selected word.
+If it's correct it gets pushed into the successfullGuess array.
+When the successful guess array is full, the win message appears.
+
+If the keyvalue doesn't match the selected word index, the wrongguess bool is set to true.
+The numberOfGuesses gets incremented. 
+The hangmanImgsrc changes and increments.
+Finally the loose message appears if there are too many wrong guesses. 
+
+  */
+  letterButtons.forEach(function (button) {
+	button.addEventListener('click', function (e) {
+        let wrongGuess = true;
         let buttonVal = (event.target.value);
         for (let index = 0; index < selectedWord.length; index++) {
-            if (buttonVal === selectedWord[index]) 
+            if (buttonVal === selectedWord[index])
             {  
                 let letterBox = document.getElementById(index);
                 letterBox.setAttribute('value', buttonVal);
-                successfulGuesses.push(buttonVal)
+                successfulGuesses.push(buttonVal);
                 if (successfulGuesses.length === selectedWord.length) {
                     var msgBox = document.createElement('h1');
                     var msgBoxContent = document.createTextNode('YOU WIN!');
-                    msgBox.appendChild(msgBoxContent)
+                    msgBox.appendChild(msgBoxContent);
                     msgElem.appendChild(msgBox);
                     showRestartBtn();
                     disableButton();
                 }
-                wrongGuess = false; 
+                wrongGuess = false;
             }  
         }
             if (wrongGuess) {
@@ -157,10 +176,5 @@ letterButtons.forEach(function(button) {
                         }
         }
         button.disabled = true;
-    });
-});
-
-// Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
-// Funktionen som tar fram bokstävernas rutor, antal beror på vilket ord
-// Funktion som körs när du trycker på bokstäverna och gissar bokstav
-// Funktionen ropas vid vinst eller förlust, gör olika saker beroende av de // 
+    })}
+);
