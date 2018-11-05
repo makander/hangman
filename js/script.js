@@ -52,7 +52,6 @@ function restartBtnToggle () {
     }  
 }
 
-
 window.onload = init; 
 
 /* function startGame () {
@@ -76,21 +75,9 @@ restartBtn.addEventListener('click', function() {
     restartBtnToggle();
 });
 
-
-
 function wordGenerator () {
     return wordList[Math.floor(Math.random()*wordList.length)];
 }
-
-/* function userMessage () {
-    var msgBox = document.createElement('h1');
-    var msgBoxContent = document.createTextNode('You +')
-    msgBox.appendChild(msgBoxContent)
-    msgElem.appendChild(msgBox);
-    restartBtn.style.visibility = 'visible';
-}
-
-*/
 
 function removeLetterBoxes() {
     while (letterBoxes.firstChild) {
@@ -98,13 +85,9 @@ function removeLetterBoxes() {
     }
 }
 
-function removeMsg () {
-        msgElem.removeChild(msgElem.firstChild);
-    };
-
 function looseMsg () {
     var msgBox = document.createElement('h1');
-    var msgBoxContent = document.createTextNode('YOU LOOSE!')
+    var msgBoxContent = document.createTextNode('YOU LOOSE!');
     msgBox.appendChild(msgBoxContent)
     msgElem.appendChild(msgBox);
 }
@@ -115,6 +98,10 @@ function winMsg () {
     msgBox.appendChild(msgBoxContent)
     msgElem.appendChild(msgBox);
 }
+
+function removeMsg () {
+    msgElem.removeChild(msgElem.lastChild);
+};
 
 function enableButton () {
 letterButtons.forEach(button => {
