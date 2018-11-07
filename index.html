@@ -13,18 +13,20 @@
     </header>
     <main>
         <article>
-            <h2>Välkommen till spelet Hänga gubbe.</h2>
-            <p>När du trycker på starta spelet, kommer datorn att välja ett ord slumpmässigt. <br/>
-               Det kommer då dyka upp ett visst antal fält som motsvarar antalet bokstäver i ordet. <br/> 
-               Ditt mål är att gissa ordet genom att trycka på bokstavsknapparna.<br/>
-               För varje bokstav du gissar rätt, så fylls dyker det upp en bokstav i på den plats som bokstaven du gissade på motsvarar i ordet.
+            <h2>Welcome to hangman</h2>
+            <p>
+                When you press the Start button the game will pick a random word from the category of household appliances.
+            </br> 
+                A number of empty boxes that match the length of the word will appear. 
+            </br> 
+                You have to guess the word by pressing on the letter butons below. 
+            </br> 
+                If you guess correctly the letter will appear in one of the boxes. 
+                If you're wrong you'll hang. 
             </p>
-            <ul>
-                <li>Övriga regler</li>
-            </ul>
         </article>
         <div class="buttonContainer">
-            <button class="btn btn--stripe" type="button" id="startGameBtn">Starta spelet</button>
+            <button class="btn btn--stripe" type="button" id="startGameBtn">Start game</button>
         </div>
         <section id="gameBoard">
             <ul id="letterButtons">
@@ -54,9 +56,6 @@
                 <li><button class="btn btn--stripe" type="button" value="X">X</button></li>
                 <li><button class="btn btn--stripe" type="button" value="Y">Y</button></li>
                 <li><button class="btn btn--stripe" type="button" value="Z">Z</button></li>
-                <li><button class="btn btn--stripe" type="button" value="Å">Å</button></li>
-                <li><button class="btn btn--stripe" type="button" value="Ä">Ä</button></li>
-                <li><button class="btn btn--stripe" type="button" value="Ö">Ö</button></li>
             </ul>
             <section id="letterBoxes">
                 <!-- This is where the matched letters should appear, these should match the number of -->
@@ -69,7 +68,7 @@
         <section id="message">
             <!-- This is where messages should appear -->
             <div class="buttonContainer">
-                <button class="btn btn--stripe" type="button" id="restartBtn" value="hidden">Starta om!</button>
+                <button class="btn btn--stripe" type="button" id="restartBtn" value="hidden">Reset</button>
             </div>
         </section>
     </main>

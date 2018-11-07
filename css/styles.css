@@ -71,6 +71,10 @@ main > article > h2 {
   margin-bottom: 1.5em;
 }
 
+main > article > p {
+  text-align: center;
+}
+
 ul {
   list-style-type: none;
   text-align: center;
