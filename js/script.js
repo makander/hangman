@@ -11,7 +11,7 @@ var numberOfGuesses = 0;
 var successfulGuesses = [];
 var restartButton = document.querySelector('#restartBtn');
 var gameBoard = document.querySelector('#gameBoard');
-
+var rules = document.querySelector('#rules')
 // Funktion som körs då hela webbsidan är inladdad, dvs då all HTML-kod är utförd
 // Initiering av globala variabler samt koppling av funktioner till knapparna.
 
@@ -27,7 +27,12 @@ function init() {
         gameBoardVisible();
         hideStartBtn();
         successfulGuesses = [];
+        hideRules();
     });
+}
+
+function hideRules() {
+    rules.style.display = "none";
 }
 
 function gameBoardVisible() {
@@ -166,7 +171,7 @@ Finally the loose message appears if there are too many wrong guesses.
                     wrongGuess = false;
                     if (numberOfGuesses > 5) {
                         var msgBox = document.createElement('h1');
-                        var msgBoxContent = document.createTextNode('YOU LOOSE!');
+                        var msgBoxContent = document.createTextNode('YOU LOSE!');
                         msgBox.appendChild(msgBoxContent);
                         msgElem.appendChild(msgBox);
                         showRestartBtn();

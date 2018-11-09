@@ -7,6 +7,7 @@
 }
 
 body {
+  background-color: whitesmoke; 
   color: #666;
   font-family: sans-serif;
   display: -webkit-box;
@@ -23,8 +24,8 @@ body {
 }
 
 header {
-  background-color: silver;
-  color: #fff;
+  background-color: slategray;
+  color: #C9D0FF;
   -webkit-box-flex: 0;
   -webkit-flex: none;
   -ms-flex: none;
@@ -88,8 +89,8 @@ footer {
   color: #fff;
   font-size: 1.25em;
   width: 100%;
-  flex: none;
   text-align: center;
+  flex-shrink: 0;
 }
 
 #startGameBtn {
@@ -121,7 +122,8 @@ footer {
 
 #letterBoxes input {
   border: 1px solid #666;
-  color: #666;
+  color: whitesmoke;
+  border-radius: 5px;
   font-size: 1.5em;
   font-weight: bold;
   line-height: 2em;
@@ -158,8 +160,6 @@ footer {
   height: auto;
 }
 
-
-
 .btn {
   -moz-user-select: text;
   background-color: #fff;
@@ -181,71 +181,66 @@ footer {
   text-transform: uppercase;
 }
 
-.btn::-moz-focus-inner {
-  padding: 0;
-  border: 0;
+.btn:disabled {
+  background-color: darkgrey;
 }
 
-.btn--stripe {
-  overflow: hidden;
-  position: relative;
+.btn:hover {
+  background-color:sandybrown;
 }
 
-.btn--stripe:after {
-  content: "";
-  display: block;
-  height: 7px;
-  width: 100%;
-  background-image: -webkit-repeating-linear-gradient(
-    45deg,
-    #666,
-    #666 1px,
-    transparent 2px,
-    transparent 5px
-  );
-  background-image: repeating-linear-gradient(
-    45deg,
-    #666,
-    #666 1px,
-    transparent 2px,
-    transparent 5px
-  );
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-top: 1px solid #666;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background-size: 7px 7px;
+ @media screen and (max-width: 768px) {
+#letterButtons .btn {
+  padding: 4px;
+} 
 }
 
-.btn--stripe:disabled {
-  background-color: #999;
-  color: #fff;
-  border-color: #666;
+@media screen and (max-width: 768px) {
+  #letterButtons {
+    justify-content: center;
+  } 
+  }
+  
+@media screen and (max-width: 768px) {
+header h1 {
+  display: none;
+}
 }
 
-.btn--stripe:hover {
-  background-color: #666;
-  color: #fff;
-  border-color: #000;
+@media screen and (max-width: 768px) {
+  header h1 {
+    padding-bottom: 10px;
+  }
 }
 
-.btn--stripe:disabled:after,
-.btn--stripe:hover:after {
-  background-image: -webkit-repeating-linear-gradient(
-    45deg,
-    #fff,
-    #fff 1px,
-    transparent 2px,
-    transparent 5px
-  );
-  background-image: repeating-linear-gradient(
-    45deg,
-    #fff,
-    #fff 1px,
-    transparent 2px,
-    transparent 5px
-  );
-  border-top: 1px solid #000;
+@media screen and (max-width: 768px) {
+  #letterButtons button:not(last-child) {
+    margin: 2px 2px;
+    cursor: pointer;
+ }
+}
+
+@media screen and (max-width: 768px) {
+  .buttonContainer {
+    padding-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #letterBoxes input {
+    padding: 0px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #hangman {
+    width: auto;
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  footer {
+    display: none;
+  }
 }
