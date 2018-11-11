@@ -182,11 +182,11 @@ button{
   text-transform: uppercase;
 }
 
-#gameBoard button:disabled {
+button:disabled {
   background-color: darkgrey;
 }
 
-#gameBoard button:hover {
+button:hover {
   background-color:sandybrown;
 }
 
