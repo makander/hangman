@@ -11,9 +11,7 @@ var numberOfGuesses = 0;
 var successfulGuesses = [];
 var restartButton = document.querySelector('#restartBtn');
 var gameBoard = document.querySelector('#gameBoard');
-var rules = document.querySelector('#rules')
-// Funktion som körs då hela webbsidan är inladdad, dvs då all HTML-kod är utförd
-// Initiering av globala variabler samt koppling av funktioner till knapparna.
+var rules = document.querySelector('#rules');
 
 window.onload = init;
 
