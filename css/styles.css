@@ -93,8 +93,9 @@ footer {
   flex-shrink: 0;
 }
 
-#startGameBtn {
-  font-size: 1.5em;
+.buttonContainer > button {
+  padding: 22px 26px;
+  font-weight: bolder;
 }
 
 #gameBoard {
@@ -161,9 +162,8 @@ footer {
   height: auto;
 }
 
-.btn {
+button{
   -moz-user-select: text;
-  background-color: #fff;
   background: transparent;
   border-radius: 6px;
   border: 0;
@@ -182,16 +182,16 @@ footer {
   text-transform: uppercase;
 }
 
-.btn:disabled {
+#gameBoard button:disabled {
   background-color: darkgrey;
 }
 
-.btn:hover {
+#gameBoard button:hover {
   background-color:sandybrown;
 }
 
  @media screen and (max-width: 768px) {
-#letterButtons .btn {
+#letterButtons button {
   padding: 4px;
 } 
 }
@@ -211,6 +211,12 @@ header h1 {
 @media screen and (max-width: 768px) {
   header h1 {
     padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .buttonContainer > button {
+    padding: 12px 26px 12px;
   }
 }
 

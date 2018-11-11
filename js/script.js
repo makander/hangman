@@ -35,6 +35,10 @@ function hideRules() {
     rules.style.display = "none";
 }
 
+function showRules() {
+    rules.style.display = "initial";
+}
+
 function gameBoardVisible() {
     gameBoard.style.visibility = 'visible';
 }
@@ -88,6 +92,7 @@ restartBtn.addEventListener('click', function() {
     showStartBtn();
     hideRestartBtn();
     gameBoardHidden();
+    showRules();
 });
 
 function wordGenerator() {
